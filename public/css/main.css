@@ -1,0 +1,25 @@
+body {
+	font-family: 'Roboto';
+}
+
+.navbar-brand {
+	font-family: 'Press Start 2P';
+	color: yellow !important;
+	display: inline-block !important;
+	font-size: 75%;
+}
+
+.box-text {
+	display: block;
+	margin: -2% -2% -2% -2%;
+	padding: -2% -2% -2% -2%;	
+	line-height: 105%;
+}
+
+.top-logo {
+	color: red !important;
+}
+
+.bot-logo {
+	color: yellow !important;
+}
