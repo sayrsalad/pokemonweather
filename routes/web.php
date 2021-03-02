@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::resource('openweather', 'OpenWeatherController');
+Route::resource('pokemon', 'PokemonController');
