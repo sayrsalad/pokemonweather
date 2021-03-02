@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+Use View;
 
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class OpenWeatherController extends Controller
      */
     public function index()
     {
-        return \View::make('openweather');
+        return View::make('openweather.index');
     }
 
     /**
