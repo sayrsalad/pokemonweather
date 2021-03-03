@@ -15,6 +15,7 @@ function getWeather(){
 			type: 'GET',
 			datatype: 'jsonp',
 			success: function(data){
+				console.log(data);
 				var widget = showResults(data);
 				$("#showWeather").html(widget);
 				$("#city").val('');
@@ -26,5 +27,12 @@ function getWeather(){
 }
 
 function showResults(data){
-	return "<p>Temperature: " + data.main.temp + "&deg;C</p>"
+	return "<h3>Current Weather for "+data.name+", "+data.sys.country+"</h3>" +
+		   "<p>Weather: " + data.weather.main + "</p>" +
+		   "<p>Temperature: " + data.main.temp + "&deg;C</p>" +
+		   "<p>Pressure: " + data.main.pressure + "hPa</p>" +
+		   "<p>Humidity: " + data.main.humidity + "%</p>" +
+		   "<p>Minimum Temperature: " + data.main.temp_min + "&deg;C</p>" +
+		   "<p>Maximum Temperature: " + data.main.temp_max + "&deg;C</p>" +
+		   "<p>Wind Speed: " + data.wind.speed + "</p>"
 }
