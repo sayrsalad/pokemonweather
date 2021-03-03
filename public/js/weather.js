@@ -29,6 +29,7 @@ function getWeather(){
 function showResults(data){
 	return "<h3>Current Weather for "+data.name+", "+data.sys.country+"</h3>" +
 		   "<p>Weather: " + data.weather[0].main + "</p>" +
+		   "<p>Weather Description: " + data.weather[0].description + "</p>" +
 		   "<p>Temperature: " + data.main.temp + "&deg;C</p>" +
 		   "<p>Pressure: " + data.main.pressure + "hPa</p>" +
 		   "<p>Humidity: " + data.main.humidity + "%</p>" +
