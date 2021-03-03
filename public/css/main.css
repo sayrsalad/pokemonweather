@@ -1,5 +1,9 @@
 body {
-	font-family: 'Roboto' !important;
+	font-family: 'Poppins' !important;
+}
+
+.navbar {
+	font-family: 'Poppins' !important;
 }
 
 .navbar-brand {
@@ -17,9 +21,23 @@ body {
 }
 
 .top-logo {
-	color: red !important;
+	color: #F74E45 !important;
 }
 
 .bot-logo {
-	color: yellow !important;
+	color: #F5F591 !important;
+}
+
+.jumbotron h2 {
+	font-weight: bold;
+}
+
+#cityDiv {
+	width: 31%;
+	margin: auto;
+	text-align: center;
+}
+
+#cityDiv button {
+ margin-left: 1%;
 }
