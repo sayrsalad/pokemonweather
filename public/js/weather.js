@@ -11,7 +11,13 @@ function getWeather(){
 
 	if (city != '') {
 		$.ajax({
-			url: 'http://api.openweathermap.org/data/2.5/weather?q='+city+'&units=metric'+'&appid=5d33ff84ea5610b1bfa28790de231985'
+			url: 'http://api.openweathermap.org/data/2.5/weather?q='+city+'&units=metric'+'&appid=5d33ff84ea5610b1bfa28790de231985',
+			type: 'GET',
+			datatype: 'jsonp',
+			success: function(data){
+				console.log(data);
+				$("#showWeather").html();
+			}
 		});
 	} else {
 		$("#error").html("<div>Please input a valid city.</div>");

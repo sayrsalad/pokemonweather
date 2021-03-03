@@ -18,6 +18,12 @@
 			<button id="submitCity" type="submitCity" class="btn btn-primary">Search City</button>
 		</div>
 	</div>
+
+	<div id="error"></div>
+	<div id="showWeather">
+		
+	</div>
+
 </div>
 
 
