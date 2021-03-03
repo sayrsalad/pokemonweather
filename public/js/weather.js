@@ -15,11 +15,16 @@ function getWeather(){
 			type: 'GET',
 			datatype: 'jsonp',
 			success: function(data){
-				console.log(data);
-				$("#showWeather").html();
+				var widget = showResults(data);
+				$("#showWeather").html(widget);
+				$("#city").val('');
 			}
 		});
 	} else {
 		$("#error").html("<div>Please input a valid city.</div>");
 	}
+}
+
+function showResults(data){
+	return "<p>Temperature: " + data.main.temp + "&deg;C</p>"
 }
