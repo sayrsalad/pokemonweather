@@ -7,7 +7,6 @@
 	
 	<body>
 		@include('layouts.navbar ')
-		</br>
 		@yield('body')
 	</body>
 </html>
