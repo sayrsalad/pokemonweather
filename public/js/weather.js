@@ -65,10 +65,8 @@ function showResults (data) {
 
 	var weatherbody = document.getElementById("weather-body");
 	if (data.main.temp > 16) {
-		weatherbody.classList.remove("warm");
 		weatherbody.style.backgroundImage = "url(../images/weather/warm.jpg)"
 	} else {
-		weatherbody.classList.add("cold");
 		weatherbody.style.backgroundImage = "url(../images/weather/cold.jpg)"
 	}
 
