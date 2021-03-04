@@ -1,29 +1,24 @@
 @section('title', 'Open Weather')
 @extends('layouts.base')
 @section('body')
-
-
-<div class="jumbotron">
-	<h2 class="text-center">Get Current Weather Information</h2>
-</div>
-
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<h3 class="text-center">Enter City Name</h3>
-		</div>
-
-		<div class="form-group form-inline" id="cityDiv">
-			<input type="text" name="city" id="city" class="form-control" placeholder="Enter city name">
-			<button id="submitCity" type="submitCity" class="btn btn-primary">Search City</button>
-		</div>
+<div class="weather-body cold" id="weather-body">
+	<div class="app-wrap">
+		<header class="weather-header">
+			<input type="text" id="city" autocomplete="off" class="search-box" placeholder="Search for a city....">
+			<button id="submitCity" type="submitCity"><i class="fa fa-search"></i></button>
+		</header>
+		<main class="weather-main">
+			<section class="location">
+				<div class="city"></div>
+				<div class="date"></div>
+			</section>
+			<div class="current">
+				<div class="temp"></span></div>
+				<div class="weather"></div>
+				<div class="hi-low"></div>
+			</div>
+		</main>
 	</div>
-
-	<div id="error"></div>
-	<div id="showWeather">
-		
-	</div>
-
 </div>
 
 

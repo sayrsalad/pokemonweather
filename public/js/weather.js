@@ -4,36 +4,84 @@ $(document).ready(function () {
 		return getWeather();
 	});
 
-});
+	$.get('https://ipinfo.io',function(response){ 
+		getWeather(response.city);
+ 		},'json');
+	});
 
-function getWeather(){
-	var city = $("#city").val();
+const api = {
+	key: "5d33ff84ea5610b1bfa28790de231985",
+	baseurl: "http://api.openweathermap.org/data/2.5/"
+}
+
+function getCity() {
+		
+}
+
+function getWeather(maincity){
+
+	if ($("#city").val()) {
+		var city = $("#city").val();
+	} else {
+		var city = maincity;
+	}
 
 	if (city != '') {
 		$.ajax({
-			url: 'http://api.openweathermap.org/data/2.5/weather?q='+city+'&units=metric'+'&appid=5d33ff84ea5610b1bfa28790de231985',
+			url: api.baseurl + 'weather?q='+city+'&units=metric'+'&appid=' + api.key,
 			type: 'GET',
 			datatype: 'jsonp',
 			success: function(data){
 				console.log(data);
-				var widget = showResults(data);
-				$("#showWeather").html(widget);
-				$("#city").val('');
+				showResults(data);
+			},
+			error: function (error) {
+				console.log('error');
 			}
 		});
 	} else {
-		$("#error").html("<div>Please input a valid city.</div>");
+		console.log('error');
 	}
 }
 
-function showResults(data){
-	return "<h3>Current Weather for "+data.name+", "+data.sys.country+"</h3>" +
-		   "<p>Weather: " + data.weather[0].main + "</p>" +
-		   "<p>Weather Description: " + data.weather[0].description + "</p>" +
-		   "<p>Temperature: " + data.main.temp + "&deg;C</p>" +
-		   "<p>Pressure: " + data.main.pressure + "hPa</p>" +
-		   "<p>Humidity: " + data.main.humidity + "%</p>" +
-		   "<p>Minimum Temperature: " + data.main.temp_min + "&deg;C</p>" +
-		   "<p>Maximum Temperature: " + data.main.temp_max + "&deg;C</p>" +
-		   "<p>Wind Speed: " + data.wind.speed + "</p>"
+function showResults (data) {
+	console.log(data);
+	let city = document.querySelector('.location .city');
+	city_name = data.name.replace(' City','');
+	city.innerText = `${city_name}, ${data.sys.country}`;
+
+	let now = new Date();
+	let date = document.querySelector('.location .date');
+	date.innerText = dateBuilder(now);
+
+	let temp = document.querySelector('.current .temp');
+	temp.innerHTML = `${Math.round(data.main.temp* 10)/ 10}<span>°C</span>`;
+
+	let weather_el = document.querySelector('.current .weather');
+	weather_el.innerText = `${data.weather[0].main}`;
+
+	let hilow = document.querySelector('.hi-low');
+	hilow.innerText = `${Math.round(data.main.temp_min* 10)/ 10}°C / ${Math.round(data.main.temp_max* 10)/ 10}°C`;
+
+	var weatherbody = document.getElementById("weather-body");
+	if (data.main.temp > 16) {
+		weatherbody.classList.remove("warm");
+		weatherbody.style.backgroundImage = "url(../images/weather/warm.jpg)"
+	} else {
+		weatherbody.classList.add("cold");
+		weatherbody.style.backgroundImage = "url(../images/weather/cold.jpg)"
+	}
+
+}
+
+function dateBuilder (d) {
+	const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+	const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+	let day = days[d.getDay()];
+	let date = d.getDate();
+	let month = months[d.getMonth()];
+	let year = d. getFullYear();
+
+	return `${day} ${date} ${month} ${year}`;
 }
