@@ -17,6 +17,11 @@ class OpenWeatherController extends Controller
         return View::make('openweather.index');
     }
 
+    public function cities()
+    {
+        return View::make('openweather.cities');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

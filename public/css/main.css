@@ -65,6 +65,16 @@ body {
 	transition: 0.4s ease-out;
 }
 
+.cities-body {
+    width:100%;
+	font-family: 'Montserrat', sans-serif !important;
+	background-image: url(../images/weather/cities.jpg);
+	background-size: cover;
+	background-position: top center;
+    background-attachment: fixed;
+	transition: 0.4s ease-out;
+}
+
 
 .app-wrap {
 	display: flex;
@@ -183,12 +193,18 @@ body {
 
 .home-body h1 {
 	font-size: 80px;
+	text-shadow: 4px 6px rgba(0, 0, 0, 0.6);
+}
+
+.home-body h2 {
+	text-shadow: 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 
 .pokemon {
     position: relative;   
     color: #D8D8D8;
+    text-shadow: 4px 6px rgba(0, 0, 0, 0.6);
 }
 
 .pokemon span {
@@ -196,4 +212,11 @@ body {
     position: absolute;
     color: #F74E45;
     overflow: hidden;   
+}
+
+.cities-table {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 50px 15px 15px;
 }

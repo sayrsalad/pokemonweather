@@ -10,7 +10,8 @@
           OpenWeather
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="{{route('openweather.index')}}">Current Weather</a>
+          <a class="dropdown-item" href="{{route('openweather.current')}}">Current Weather</a>
+          <a class="dropdown-item" href="{{route('openweather.cities')}}">Cities</a>
         </div>
       </li>
       <li class="nav-item">
