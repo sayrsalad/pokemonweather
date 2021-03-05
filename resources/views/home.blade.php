@@ -4,10 +4,16 @@
 
 <div class="home-body">
 	<div class="app-wrap">
-		<h2>Learn about</h2>
-		<h1>the Weather</h1>
-		<h2>and</h2>
-		<h1>Pokemons</h1>
+		<div class="home-content">
+			<h2>Learn about</h2>
+			<h1>the Weather</h1>
+			<h2>and</h2>
+			<h1><div class="pokemon">
+			    <span>Pokémons</span>
+			    Pokémons
+			</div></h1>
+		</div>
+
 	</div>
 </div>
 

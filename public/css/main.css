@@ -1,3 +1,7 @@
+::-webkit-scrollbar {
+	display: none;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -11,13 +15,8 @@
 	.navbar .nav-item .dropdown-menu{ margin-top:0; }
 }	
 
-html {
-	height: 100%;
-	width: 100%;
-}
-
 body {
-	height: 100%;
+ background-color: #130712;
 }
 
 .navbar {
@@ -47,49 +46,31 @@ body {
 }
 
 .home-body {
-	height:100%;
     width:100%;
-    position: fixed;
 	font-family: 'Montserrat', sans-serif !important;
 	background-image: url(../images/home.jpg);
 	background-size: cover;
 	background-position: top center;
+    background-attachment: fixed;
 	transition: 0.4s ease-out;
 }
 
-h1 {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 50px 15px 15px;
-	color: #FFFFFF;
-}
-
-h2 {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 50px 15px 15px;
-	color: #FFFFFF;
-}
-
 .weather-body {
-	height:100%;
     width:100%;
-    position: fixed;
 	font-family: 'Montserrat', sans-serif !important;
 	background-image: url(../images/weather/warm.jpg);
 	background-size: cover;
 	background-position: top center;
+    background-attachment: fixed;
 	transition: 0.4s ease-out;
 }
+
 
 .app-wrap {
 	display: flex;
 	flex-direction: column;
-	min-height: 100vh;
+	min-height: 92vh;
 	background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
-
 }
 
 .weather-header {
@@ -185,4 +166,34 @@ h2 {
 	font-size: 24px;
 	font-weight: 500;
 	text-shadow: 0px 4px rgba(0, 0, 0, 0.4);
+}
+
+.home-body h1, h2 {
+	font-weight: 900;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px 15px 15px;
+	color: #FFFFFF;
+}
+
+.home-content{
+	margin-top: 70px;
+}
+
+.home-body h1 {
+	font-size: 80px;
+}
+
+
+.pokemon {
+    position: relative;   
+    color: #D8D8D8;
+}
+
+.pokemon span {
+    height: 50%; 
+    position: absolute;
+    color: #F74E45;
+    overflow: hidden;   
 }

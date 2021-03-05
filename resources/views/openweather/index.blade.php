@@ -1,7 +1,7 @@
 @section('title', 'Open Weather')
 @extends('layouts.base')
 @section('body')
-<div class="weather-body cold" id="weather-body">
+<div class="weather-body" id="weather-body">
 	<div class="app-wrap">
 		<header class="weather-header">
 			<input type="text" id="city" autocomplete="off" class="search-box" placeholder="Search for a city....">
