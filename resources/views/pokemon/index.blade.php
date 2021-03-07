@@ -5,5 +5,8 @@
 
 <h1>PokeDex</h1>
 <div id="poke_container" class="poke-container"></div>
-<link rel="stylesheet" href="pokemon.css"/>
-<script language = "JavaScript" src="pokemon.js"></script>
+<link rel="stylesheet" href="css/pokemon.css"/>
+<script language = "JavaScript" src="js/pokemon.js"></script>
+
+
+@endsection

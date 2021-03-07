@@ -201,7 +201,7 @@ body {
 }
 
 
-.pokemon {
+/*.pokemon {
     position: relative;   
     color: #D8D8D8;
     text-shadow: 4px 6px rgba(0, 0, 0, 0.6);
@@ -212,7 +212,7 @@ body {
     position: absolute;
     color: #F74E45;
     overflow: hidden;   
-}
+}*/
 
 .cities-table {
 	display: flex;
