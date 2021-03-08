@@ -9,6 +9,11 @@ $(document).ready(function () {
 						datatype: 'jsonp',
 						success: function(data){
 							createWeatherCard(data);
+							var card = document.getElementById("city-card");
+							$('.city-card').css({'opacity':0});
+							$('.city-card').animate({
+								'opacity':1.0
+							}, 450);
 						},
 						error: function (error) {
 							console.log('error');
@@ -51,11 +56,12 @@ function getWeather(maincity){
 				showResults(data);
 			},
 			error: function (error) {
-				console.log('error');
+				alert('You entered a wrong country.');
 			}
 		});
 	} else {
 		console.log('error');
+		alert('You entered a wrong country.');
 	}
 }
 
@@ -103,10 +109,7 @@ function createWeatherCard(city) {
 	const cityEl = document.createElement('div');
 	const cities_container = document.getElementById('cities-container');
 	cityEl.classList.add('city-card');
-
-	// const poke_types = pokemon.types.map(type => type.type.name);
-	// const type = main_types.find(type => poke_types.indexOf(type) > -1);
-	// const name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
+	cityEl.setAttribute("id", "city-card");
 
 	const cityInnerHTML = `
 			<section class="location">
