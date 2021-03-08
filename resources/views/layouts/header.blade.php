@@ -23,6 +23,8 @@
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 			<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 			<link href="{{ asset('css/main.css') }}" rel="stylesheet">			
+			<link rel="preconnect" href="https://fonts.gstatic.com">
+			<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 
 			<!-- Scripts -->
 			<!-- <script src="{{ asset('js/app.js') }}" defer></script> -->

@@ -8,7 +8,7 @@
 			<h2>Learn about</h2>
 			<h1>the Weather</h1>
 			<h2>and</h2>
-			<h1><div class="pokemon">
+			<h1><div class="pokemon-home">
 			    <span>Pokémons</span>
 			    Pokémons
 			</div></h1>

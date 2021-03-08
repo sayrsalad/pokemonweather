@@ -1,25 +1,41 @@
 $(document).ready(function () {
+	if(window.location.pathname == "/openweather/cities"){
+		$.getJSON( "../../node_modules/philippines/cities.json", function( cities ) {
+			$.each(cities, function(i, value){
+				setTimeout(function(){
+					$.ajax({
+						url: api.baseurl + 'weather?q='+value.name+',PH&units=metric'+'&appid=' + api.key,
+						type: 'GET',
+						datatype: 'jsonp',
+						success: function(data){
+							createWeatherCard(data);
+						},
+						error: function (error) {
+							console.log('error');
+						}
+					});
+				},5000 + ( i * 5000 ));
 
-	$("#submitCity").click(function(){
-		return getWeather();
-	});
+			});
+		});
+		console.log('hi');
+	} else if (window.location.pathname == "/openweather/current") {
+		$.get('https://ipinfo.io',function(response){ 
+			getWeather(response.city);
+		},'json');
+	}
 
-	$.get('https://ipinfo.io',function(response){ 
-		getWeather(response.city);
- 		},'json');
-	});
+	$('#submitCity').on({ 'click': getWeather });
+
+});
 
 const api = {
 	key: "5d33ff84ea5610b1bfa28790de231985",
 	baseurl: "http://api.openweathermap.org/data/2.5/"
 }
 
-function getCity() {
-		
-}
 
 function getWeather(maincity){
-
 	if ($("#city").val()) {
 		var city = $("#city").val();
 	} else {
@@ -32,7 +48,6 @@ function getWeather(maincity){
 			type: 'GET',
 			datatype: 'jsonp',
 			success: function(data){
-				console.log(data);
 				showResults(data);
 			},
 			error: function (error) {
@@ -45,7 +60,7 @@ function getWeather(maincity){
 }
 
 function showResults (data) {
-	console.log(data);
+
 	let city = document.querySelector('.location .city');
 	city_name = data.name.replace(' City','');
 	city.innerText = `${city_name}, ${data.sys.country}`;
@@ -83,3 +98,38 @@ function dateBuilder (d) {
 
 	return `${day} ${date} ${month} ${year}`;
 }
+
+function createWeatherCard(city) {
+	const cityEl = document.createElement('div');
+	const cities_container = document.getElementById('cities-container');
+	cityEl.classList.add('city-card');
+
+	// const poke_types = pokemon.types.map(type => type.type.name);
+	// const type = main_types.find(type => poke_types.indexOf(type) > -1);
+	// const name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
+
+	const cityInnerHTML = `
+			<section class="location">
+				<div class="city">${city.name}, ${city.sys.country}</div>
+				<div class="date"></div>
+			</section>
+			<div class="current">
+				<div class="temp">${Math.round(city.main.temp* 10)/ 10}<span>°C</span></div>
+				<div class="weather">${city.weather[0].main}</div>
+				<div class="hi-low">${Math.round(city.main.temp_min* 10)/ 10}°C / ${Math.round(city.main.temp_max* 10)/ 10}°C</div>
+			</div>
+    `;
+
+	cityEl.innerHTML = cityInnerHTML;
+
+	cities_container.appendChild(cityEl);
+}
+
+// const getPokemon = async id => {
+// 	const url = api.baseurl + 'weather?q='+city+'&units=metric'+'&appid=' + api.key;
+// 	const res = await fetch(url);
+// 	const pokemon = await res.json();
+// 	createPokemonCard(pokemon);
+// };
+
+// fetchPokemons();

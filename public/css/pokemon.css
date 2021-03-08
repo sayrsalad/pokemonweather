@@ -1,17 +1,23 @@
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400&display=swap');
 
-* {
-	box-sizing: border-box;
-}
 body {
 	/*background: #EFEFBB;
 	background: -webkit-linear-gradient(to right, #D4D3DD, #EFEFBB);
 	background: linear-gradient(to right, #D4D3DD, #EFEFBB);*/
-	background: url('../images/20996.jpg') no-repeat center center fixed;
+	background: url('../images/pokemon/pokeball2.jpg') no-repeat center center fixed;
+	background-size: cover;
+/*	display: flex;
+	flex-direction: column;*/	
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+}
 
+.pokemon-app {
+	background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
 	display: flex;
-	flex-direction: column;
+	flex-direction: column;	
 	align-items: center;
 	justify-content: center;
 	font-family: 'Lato';
@@ -19,8 +25,12 @@ body {
 }
 
 
-h1 {
+.pokemon-app h1 {
 	letter-spacing: 3px;
+	color: #FFFFFF;
+	font-weight: bold;
+	padding: 15px 5px 5px 5px;
+	font-family: 'Montserrat', sans-serif !important;
 }
 
 .poke-container {
@@ -29,7 +39,7 @@ h1 {
 	align-items: space-between;
 	justify-content: center;
 	margin: 0 auto;
-	max-width: 1200px;
+	max-width: 100%;
 }
 
 .pokemon {
@@ -39,6 +49,7 @@ h1 {
 	margin: 10px;
 	padding: 20px;
 	text-align: center;
+	width: 	200px;
 }
 
 .pokemon .img-container {
@@ -69,16 +80,6 @@ h1 {
 	margin: 15px 0 7px;
 	letter-spacing: 1px;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 /* SOCIAL PANEL CSS */
