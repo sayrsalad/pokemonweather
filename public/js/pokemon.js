@@ -1,4 +1,6 @@
-const poke_container = document.getElementById('poke_container');
+
+ const poke_container = document.getElementById('poke_container');
+const pokeCache = {};
 const pokemons_number = 150;
 const colors = {
 	fire: '#FDDFDF',
@@ -26,12 +28,28 @@ const fetchPokemons = async () => {
 
 const getPokemon = async id => {
 	const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+
 	const res = await fetch(url);
 	const pokemon = await res.json();
+
 	createPokemonCard(pokemon);
 };
+const selectPokemon = async (id) =>{
+	if(!pokeCache[id]){
+	const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+	const speciesurl = `https://pokeapi.co/api/v2/pokedex/${id}`;
+	const res = await fetch(url);
+	const pokemon = await res.json();
+	pokeCache[id] =pokemon;
+	displayPopup(pokemon);
+}
+
+	displayPopup(pokeCache[id]);
+}
+	
 
 function createPokemonCard(pokemon) {
+	
 	const pokemonEl = document.createElement('div');
 	pokemonEl.classList.add('pokemon');
 
@@ -44,11 +62,13 @@ function createPokemonCard(pokemon) {
 
 	const pokeInnerHTML = `
         <div class="img-container">
+
             <img src="https://pokeres.bastionbot.org/images/pokemon/${
 							pokemon.id
 						}.png" alt="${name}" />
         </div>
         <div class="info">
+        	<li class ="info" onclick ="selectPokemon(${pokemon.id})">
             <span class="number">#${pokemon.id
 							.toString()
 							.padStart(3, '0')}</span>
@@ -61,18 +81,67 @@ function createPokemonCard(pokemon) {
 
 	poke_container.appendChild(pokemonEl);
 }
+const displayPopup = (pokemon) =>{
+	// const pokemonEl = document.createElement('div');
+	const name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
+	const type = pokemon.types.map(type => type.type.name).join(',');
+
+	
+	const htmlString = `
+	<div class="popup">
+		<button id="closeBtn"
+		onclick="closePopup()">Close</button>
+		<h4><center>${name}</center></h4>
+		<br>
+		<div class="img-container">
+		
+		
+		
+            <img src="https://pokeres.bastionbot.org/images/pokemon/${
+							pokemon.id
+						}.png" alt="${name}" />
+
+			
+        </div>
+        <div class="cardbody">
+        	<h4><strong>Profle</strong></h4>
+        	<h5><p><small>Height: </small>${pokemon.height} ft.
+        	 <p><small>Weight: </small> ${pokemon.weight} lbs.
+        	 <p><small>Catch Rate: </small> ${pokemon.capture_rate}</h5>
+        	</div>
+		</div>
+	`;
+	poke_container.innerHTML = htmlString + poke_container.InnerHTML;
+	// poke_container.appendChild(pokemonEl);
+}
+
+
+const closePopup = () => {
+	location.reload();
+	// const popup = document.querySelector('.popup');
+	// popup.parentElement.removeChild(popup);
+}
+
+
+
+
+
+
+
+
+
 
 fetchPokemons();
 
 // SOCIAL PANEL JS
-const floating_btn = document.querySelector('.floating-btn');
-const close_btn = document.querySelector('.close-btn');
-const social_panel_container = document.querySelector('.social-panel-container');
+// const floating_btn = document.querySelector('.floating-btn');
+// const close_btn = document.querySelector('.close-btn');
+// const social_panel_container = document.querySelector('.social-panel-container');
 
-floating_btn.addEventListener('click', () => {
-	social_panel_container.classList.toggle('visible')
-});
+// floating_btn.addEventListener('click', () => {
+// 	social_panel_container.classList.toggle('visible')
+// });
 
-close_btn.addEventListener('click', () => {
-	social_panel_container.classList.remove('visible')
-});
+// close_btn.addEventListener('click', () => {
+// 	social_panel_container.classList.remove('visible')
+// });

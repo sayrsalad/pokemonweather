@@ -76,12 +76,62 @@ body {
 	padding: 5px 10px;
 }
 
+
 .pokemon .name {
 	margin: 15px 0 7px;
 	letter-spacing: 1px;
 }
 
+.pokemon:hover{
+animation: bounce 0.5s linear;
+cursor: pointer;
+}
+@keyframes bounce {
+	20%{
+		transform: translateY(-6px);
+	}
+	40%{
+		transform: translateY(0px);
+	}
+	60%{
+		transform: translateY(-2px);
+	}
+	80%{
+		transform: translateY(-0px);
+	}
+}
+.popup{
+	position: fixed;
+	top:0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	background: linear-gradient(to right, #D4D3DD, #EFEFBB);
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#closeBtn {
+	position: absolute;
+	top: 70px;
+	right: 20px;
 
+}
+button{
+	background-color: orangered;
+	padding: 10px 20px;
+	border: none;
+	color: white;
+	border-radius: 3px;
+	transition: transform 100ms;
+
+}
+button:hover {
+	cursor: pointer;
+	transform: translateY(-1px);
+	box-shadow: 0px 1px 2px darkred;
+}
 /* SOCIAL PANEL CSS */
 .social-panel-container {
 	position: fixed;
@@ -239,4 +289,81 @@ body {
 	.floating-btn {
 		right: 10px;
 	}
+}
+h4{
+	font-size: 45px;
+
+}
+h5{
+	font-size: 25px;
+	
+}
+.details {
+  position: relative;
+  margin: 0 auto;
+  width: 40vw;
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "name     name" "sprite   types" "sprite   base-stats" "profile  profile" "evo      evo";
+  display: none;
+}
+
+.details .pk-name {
+  grid-area: name;
+}
+.details .type-wrapper {
+  grid-area: types;
+}
+.details .type-wrapper .type-list {
+  padding: 0;
+  display: flex;
+}
+.details .type-wrapper .type {
+  margin-right: 5px;
+}
+
+.details .base-stats {
+  grid-area: base-stats;
+}
+.details .base-stats .stat-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.details .profile {
+  grid-area: profile;
+}
+.details .profile .profile-list {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "height    category" "weight    abilities";
+}
+.details .profile .profile-list .height {
+  grid-area: height;
+  margin-left: 5px;
+}
+.details .profile .profile-list .weight {
+  grid-area: weight;
+  margin-left: 5px;
+}
+.details .profile .profile-list .abilities {
+  grid-area: abilities;
+}
+.details .profile .profile-list .category {
+  grid-area: category;
+}
+.details .profile .profile-list .attr-label {
+  color: darkslategrey;
+  font-size: 15px;
+}
+.details .profile .profile-list .attr-value {
+  font-size: 20px;
+}
+.details .evolution {
+  grid-area: evo;
+}
+.details .evolution .evolution-list {
+  display: flex;
+  justify-content: space-evenly;
 }

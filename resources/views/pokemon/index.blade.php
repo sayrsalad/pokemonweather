@@ -8,6 +8,7 @@
 </div>
 <link rel="stylesheet" href="css/pokemon.css"/>
 <script language = "JavaScript" src="js/pokemon.js"></script>
+<script language = "JavaScript" src="js/pokemonabout.js"></script>
 
 
 @endsection
