@@ -1,5 +1,4 @@
-
- const poke_container = document.getElementById('poke_container');
+const poke_container = document.getElementById('poke_container');
 const pokeCache = {};
 const pokemons_number = 150;
 const colors = {
@@ -34,6 +33,7 @@ const getPokemon = async id => {
 
 	createPokemonCard(pokemon);
 };
+
 const selectPokemon = async (id) =>{
 	if(!pokeCache[id]){
 	const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
@@ -81,6 +81,7 @@ function createPokemonCard(pokemon) {
 
 	poke_container.appendChild(pokemonEl);
 }
+
 const displayPopup = (pokemon) =>{
 	// const pokemonEl = document.createElement('div');
 	const name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);

@@ -21,4 +21,5 @@ Route::get('/', function () {
 Route::get('/openweather/current', 'OpenWeatherController@index')->name('openweather.current');
 Route::get('/openweather/cities', 'OpenWeatherController@cities')->name('openweather.cities');
 
+Route::resource('openweather', 'OpenWeatherController');
 Route::resource('pokemon', 'PokemonController');

@@ -18,6 +18,16 @@
 				<div class="hi-low"></div>
 			</div>
 		</main>
+
+		<div class="weather-pokemon">
+			<h2>Pokémons Nearby</h2>
+
+			<div class="weather-pokemon-container" id="weather-pokemon-container">
+				
+			</div>
+
+		</div>
+
 	</div>
 </div>
 
