@@ -1,3 +1,6 @@
+@section('title', 'Open Weather')
+@extends('layouts.base')
+@section('body')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,3 +56,4 @@
 </body>
 <script src="js/pokemon.js"></script>
 </html>
+@endsection

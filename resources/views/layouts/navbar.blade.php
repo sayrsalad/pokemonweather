@@ -23,7 +23,7 @@
 			</li>
 
 			<li class="nav-item">
-				<a class="nav-link" href="{{route('openweather.current')}}">Test Your Knowledge!</a>
+				<a class="nav-link" href="{{route('quizpop.index')}}">Test Your Knowledge!</a>
 			</li>
 
 		</ul>
