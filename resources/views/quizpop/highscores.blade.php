@@ -15,7 +15,7 @@
     <div class="quizcon">
         <div class="highscore #body">
         <div id="highScores" class="quizflex-center quizflex-column">
-            <h1 class="Quizcons" id="finalScore">Leaderboard</h1>
+            <h1 class="Quiziecons" id="finalScore">Leaderboard</h1>
             <ul id="highScoresList"></ul>
             <a href="{{ route('quizpop.index') }}" class="quizbtn">Go Home<i class="fas fa-home"></i></a>
         </div>
