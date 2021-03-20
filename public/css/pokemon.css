@@ -6,53 +6,64 @@ VARIABLES
 RESET
 ---------------------------------------------- */
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-body {
-  font-family: "Open Sans", sans-serif;
- background: url('../images/pokemon/pokedex.jpg') no-repeat center center fixed;
+.pokemon-body {
+	font-family: "Open Sans", sans-serif;
+	background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), url('../images/pokemon/pokedex.jpg') no-repeat center center fixed;
 	background-size: cover;	
 	align-items: center;
 	justify-content: center;
 	margin: 0;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
-h1, h2, h3,h4, h5 ,h6 {
-  font-family: "Share Tech Mono", monospace;
+.app-pokemonweather{
+	background: none;
 }
 
-ul {
-  list-style-type: none;
-  padding-left: 0;
+.pokemon-body h1, 
+.pokemon-body h2, 
+.pokemon-body h3,
+.pokemon-body h4, 
+.pokemon-body h5 ,
+.pokemon-body h6 {
+	font-family: "Share Tech Mono", monospace;
+}
+
+.pokemon-body ul {
+	list-style-type: none;
+	padding-left: 0;
 }
 
 /* -------------------------------------------
 Pokemon Card (Homepage)
 ---------------------------------------------- */
 .pokemon {
-  border-radius: 20px;
-  background-color: #eee;
-  box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
-  padding: 10px;
-  margin: 10px;
-  width: 108px;
-  cursor: pointer;
+	border-radius: 20px;
+	background-color: #eee;
+	box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
+	padding: 10px;
+	width: 108px;
+	cursor: pointer;
+	margin: 10px 10px 10px 10px;
 }
 .pokemon img {
 	background-color: rgba(255, 255, 255, 0.6);
 	border-radius: 50%;
 	
-   margin: auto;
+	margin: auto;
 }
 
 .pokemon h2 {
-  font-size: 1em;
-  text-align: center;
+	font-size: 1em;
+	text-align: center;
 }
 .pokemon:hover{
-animation: bounce 0.5s linear;
-cursor: pointer;
+	animation: bounce 0.5s linear;
+	cursor: pointer;
 }
 @keyframes bounce {
 	20%{
@@ -72,216 +83,222 @@ cursor: pointer;
 Pokemon Details Panel
 ---------------------------------------------- */
 .details {
-  background-color: white;
-  padding-left: 2em;
-  padding-right: 2em;
-  padding-bottom: 2em;
-  border-radius: 10px;
+	background-color: white;
+	padding-left: 2em;
+	padding-right: 2em;
+	padding-bottom: 2em;
+	border-radius: 10px;
 }
 .details h1, .details h2 {
-  background-color: darkslategrey;
-  padding: 10px;
-  color: white;
-  font-weight: normal;
+	background-color: darkslategrey;
+	padding: 10px;
+	color: white;
+	font-weight: normal;
 }
 .details h1 {
-  margin-bottom: 0;
-  text-transform: uppercase;
-  text-align: center;
+	margin-bottom: 0;
+	text-transform: uppercase;
+	text-align: center;
 }
 .details .type {
-  border-radius: 5px;
-  padding: 3px 10px 3px 10px;
-  color: white;
-  font-variant: small-caps;
-  font-size: 20px;
+	border-radius: 5px;
+	padding: 3px 10px 3px 10px;
+	color: white;
+	font-variant: small-caps;
+	font-size: 20px;
 }
 .details .profile-list .profile-title {
-  font-weight: bold;
+	font-weight: bold;
 }
 .details .evolution h3 {
-  text-align: center;
-  font-size: 16px;
+	text-align: center;
+	font-size: 16px;
 }
 .details .normal {
-  background-color: #a4acaf;
+	background-color: #a4acaf;
 }
 .details .fighting {
-  background-color: #d56723;
+	background-color: #d56723;
 }
 .details .flying {
-  background-color: #8e6feb;
+	background-color: #8e6feb;
 }
 .details .poison {
-  background-color: #b97fc9;
+	background-color: #b97fc9;
 }
 .details .ground {
-  background-color: #dbb54d;
+	background-color: #dbb54d;
 }
 .details .rock {
-  background-color: #a38c21;
+	background-color: #a38c21;
 }
 .details .bug {
-  background-color: #729f3f;
+	background-color: #729f3f;
 }
 .details .ghost {
-  background-color: #7b62a3;
+	background-color: #7b62a3;
 }
 .details .steel {
-  background-color: #9eb7b8;
+	background-color: #9eb7b8;
 }
 .details .fire {
-  background-color: #fd7d24;
+	background-color: #fd7d24;
 }
 .details .water {
-  background-color: #4592c4;
+	background-color: #4592c4;
 }
 .details .grass {
-  background-color: #9bcc50;
+	background-color: #9bcc50;
 }
 .details .electric {
-  background-color: #eed535;
+	background-color: #eed535;
 }
 .details .psychic {
-  background-color: #f366b9;
+	background-color: #f366b9;
 }
 .details .ice {
-  background-color: #51c4e7;
+	background-color: #51c4e7;
 }
 .details .dragon {
-  background-color: #5e1df7;
+	background-color: #5e1df7;
 }
 .details .dark {
-  background-color: #707070;
+	background-color: #707070;
 }
 .details .fairy {
-  background-color: #fdb9e9;
+	background-color: #fdb9e9;
 }
 
 /* -------------------------------------------
 Pokemon Grid (Homepage)
 ---------------------------------------------- */
 .grid-wrapper {
-  margin: 0 auto;
-  width: 70vw;
+	margin: 0 auto;
+	width: 70vw;
 }
 .grid-wrapper h1 {
-  text-align: center;
-  font-size: 3.5em;
+	text-align: center;
+	font-size: 3.5em;
 }
 
 .pokemon-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-  grid-gap: 10px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+	grid-gap: 20px;
 }
 
 /* -------------------------------------------
 Pokemon Details Panel
 ---------------------------------------------- */
 .details {
-  position: relative;
-  margin: 0 auto;
-  width: 40vw;
-  display: grid;
-  grid-gap: 5px;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: "name     name" "sprite   types" "sprite   base-stats" "profile  profile" "evo      evo";
-  display: none;
+	position: relative;
+	margin: 0 auto;
+	width: 40vw;
+	display: grid;
+	grid-gap: 5px;
+	grid-template-columns: 1fr 1fr;
+	grid-template-areas: "name     name" "sprite   types" "sprite   base-stats" "profile  profile" "evo      evo";
+	display: none;
 }
 .details .back-button {
-  background: url("../images/pokemon/left-arrow.svg");
-  position: absolute;
-  width: 90px;
-  height: 90px;
-  left: -200px;
+	background: url("../images/pokemon/left-arrow.svg");
+	position: absolute;
+	width: 90px;
+	height: 90px;
+	left: -200px;
 }
 .details .back-button:hover {
-  background-color: rgba(255, 255, 255, 0.6);
-  cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.6);
+	cursor: pointer;
 }
 .details .pk-name {
-  grid-area: name;
+	grid-area: name;
 }
 .details .type-wrapper {
-  grid-area: types;
+	grid-area: types;
 }
 .details .type-wrapper .type-list {
-  padding: 0;
-  display: flex;
+	padding: 0;
+	display: flex;
 }
 .details .type-wrapper .type {
-  margin-right: 5px;
+	margin-right: 5px;
 }
 .details .sprite {
-  grid-area: sprite;
-  justify-self: center;
-  align-self: center;
+	grid-area: sprite;
+	justify-self: center;
+	align-self: center;
 }
 .details .base-stats {
-  grid-area: base-stats;
+	grid-area: base-stats;
 }
 .details .base-stats .stat-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 }
 .details .profile {
-  grid-area: profile;
+	grid-area: profile;
 }
 .details .profile .profile-list {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: "height    category" "weight    abilities";
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: 1fr 1fr;
+	grid-template-areas: "height    category" "weight    abilities";
 }
 .details .profile .profile-list .height {
-  grid-area: height;
-  margin-left: 5px;
+	grid-area: height;
+	margin-left: 5px;
 }
 .details .profile .profile-list .weight {
-  grid-area: weight;
-  margin-left: 5px;
+	grid-area: weight;
+	margin-left: 5px;
 }
 .details .profile .profile-list .abilities {
-  grid-area: abilities;
+	grid-area: abilities;
 }
 .details .profile .profile-list .category {
-  grid-area: category;
+	grid-area: category;
 }
 .details .profile .profile-list .attr-label {
-  color: darkslategrey;
-  font-size: 15px;
+	color: darkslategrey;
+	font-size: 15px;
 }
 .details .profile .profile-list .attr-value {
-  font-size: 20px;
+	font-size: 20px;
 }
 .details .evolution {
-  grid-area: evo;
+	grid-area: evo;
 }
 .details .evolution .evolution-list {
-  display: flex;
-  justify-content: space-evenly;
+	display: flex;
+	justify-content: space-evenly;
 }
 
 @media (max-width: 768px) {
-  .details {
-    margin: 0;
-    padding-left: 20px;
-    padding-right: 20px;
-    width: 100%;
-    grid-template-columns: 1fr;
-    grid-template-areas: "name" "sprite" "types" "base-stats" "profile" "evo ";
-  }
-  .details .back-button {
-    left: 0px;
-    top: 1100px;
-  }
+	.details {
+		margin: 0;
+		padding-left: 20px;
+		padding-right: 20px;
+		width: 100%;
+		grid-template-columns: 1fr;
+		grid-template-areas: "name" "sprite" "types" "base-stats" "profile" "evo ";
+	}
+	.details .back-button {
+		left: 0px;
+		top: 1100px;
+	}
 }
 @media (max-width: 320px) {
-  .details {
-    padding-left: 5px;
-    padding-right: 5px;
-  }
+	.details {
+		padding-left: 5px;
+		padding-right: 5px;
+	}
 }
 
+.pokedex-title {
+	color: #F5D659;
+	font-weight: 900;
+	background-color: rgba(255, 255, 255, 0.3);
+	border-radius: 10px 10px 10px 10px;
+}
 

@@ -23,7 +23,6 @@ $(document).ready(function () {
 
 			});
 		});
-		console.log('hi');
 	} else if (window.location.pathname == "/openweather/current") {
 		$.get('https://ipinfo.io',function(response){ 
 			getWeather(response.city);
@@ -33,6 +32,7 @@ $(document).ready(function () {
 	$('#submitCity').on({ 'click': getWeather });
 
 });
+
 
 const api = {
 	key: "5d33ff84ea5610b1bfa28790de231985",
@@ -60,19 +60,39 @@ const weathers = {
 	Thunderstorm: ["electric","psycic","dragon","water"],
 	Drizzle: ["water","psychic","normal","electric","grass"],
 	Rain:["water","electic","grass"],
-	Snow:["water","dragon","normal"],
+	Snow:["water","ice","normal"],
 	Mist:["water","Dragon","poison","bug","grass"],
 	Smoke:["fire","normal","dragon","bug"],
 	Haze:["fire","ground","rock","bug"],
-	Dust:[],
-	Fog:[],
-	Sand:[],
-	Ash:[],
-	Squall:[],
-	Tornado:[],
-	Clear:["normal","ground","grass","fighting","psychic"],
-	Clouds:["flying","dragon"]
+	Dust:["ground","ghost", "fire"],
+	Fog:["water", "fairy"],
+	Sand:["fighting"],
+	Ash:["ghost", "rock"],
+	Squall:["flying"],
+	Tornado:["dragon", "steel"],
+	Clear:["normal","ground","grass","fighting", "fire"],
+	Clouds:["flying","dragon", "fairy"]
 };
+
+
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+	var mybutton = document.getElementById("toTopButton");
+	if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+		mybutton.style.display = "block";
+	} else {
+		mybutton.style.display = "none";
+	}
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+	document.body.scrollTop = 0;
+	document.documentElement.scrollTop = 0;
+}
 
 
 
@@ -101,20 +121,43 @@ function getWeather(maincity){
 	}
 }
 
-const getWeatherPokemon = async (weather) => {
-	var pokemons = new Array();
 
-	for (let i = 1; i <= 150; i++) {
-		var pokemon = await getPokemonData(i);
-		for (type in pokemon.types) {
-			// console.log(weathers[weather].includes(pokemon.types[type].type.name));
-			if (weathers[weather].includes(pokemon.types[type].type.name)) {
-				console.log(pokemon.name);
-				createWeatherPokemonCard(pokemon);
+const getWeatherPokemon = async (weather) => {
+
+	fetch(pokedexUrl)
+	.then(x => x.json())
+	.then(x => {
+	// Get name of Pokedex to display in header
+	// POKEDEX_REGION.textContent = capitalizeFirstLetter(x.name);
+
+	// Fetch all Pokemon from Pokedex and display on page
+	x.pokemon_entries.forEach(function(obj) {
+		let pokemonURL = "";
+		pokemonURL = 'https://pokeapi.co/api/v2/pokemon/' + obj.entry_number;
+
+		fetch(pokemonURL)
+		.then(x => x.json())
+		.then(x => {
+
+		  // Display Pokemon on the page
+		  for (type in x.types) {
+			if (weathers[weather].includes(x.types[type].type.name)) {
+				pokemonArray.push(x);
+				insertPokemonCard(x.name, x.id, x.sprites.front_default);
 			}
-		}
-		
-	}
+		  }
+
+
+
+		})
+		.catch(err => {
+			console.log(err);
+		})
+	})
+})
+	.catch(err => {
+		console.log(err || "this is an error");
+	});
 };
 
 const getPokemonData = async id => {
@@ -146,7 +189,7 @@ function showResults (data) {
 	let hilow = document.querySelector('.hi-low');
 	hilow.innerText = `${Math.round(data.main.temp_min* 10)/ 10}°C / ${Math.round(data.main.temp_max* 10)/ 10}°C`;
 
-	document.getElementById("weather-pokemon-container").innerHTML = "";
+	document.getElementById("pokemon-grid").innerHTML = "";
 
 	getWeatherPokemon(data.weather[0].main);
 
