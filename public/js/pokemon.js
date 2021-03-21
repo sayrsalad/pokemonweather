@@ -291,7 +291,7 @@ if (window.location.pathname == "/pokemon") {
 // Back button
 const backButton = document.querySelector("#back-button");
 
-if (window.location.pathname == "/openweather/current") {
+if (window.location.pathname == "/openweather/current" || window.location.pathname == "/pokemon") {
 	backButton.addEventListener('click', function() {
 		document.querySelector("#grid-wrapper").style.display = 'block';
 		DETAILS.style.display = 'none';
