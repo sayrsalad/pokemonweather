@@ -61,9 +61,9 @@ const weathers = {
 	Drizzle: ["water","psychic","normal","electric","grass"],
 	Rain:["water","electic","grass"],
 	Snow:["water","ice","normal"],
-	Mist:["water","Dragon","poison","bug","grass"],
+	Mist:["water","shadow","poison","dark","ghost"],
 	Smoke:["fire","normal","dragon","bug"],
-	Haze:["fire","ground","rock","bug"],
+	Haze:["fire","shadow","ghost","dark"],
 	Dust:["ground","ghost", "fire"],
 	Fog:["water", "fairy"],
 	Sand:["fighting"],
@@ -71,7 +71,7 @@ const weathers = {
 	Squall:["flying"],
 	Tornado:["dragon", "steel"],
 	Clear:["normal","ground","grass","fighting", "fire"],
-	Clouds:["flying","dragon", "fairy"]
+	Clouds:["flying"]
 };
 
 
