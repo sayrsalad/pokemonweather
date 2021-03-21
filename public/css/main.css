@@ -299,9 +299,9 @@ body {
 .city-card .current .temp {
 	color: #FFFFFF;
 	font-size: 50px;
-	font-weight: 400 !important;
+	font-weight: 900 !important;
 	margin: 30px 0px;
-	text-shadow: 4px 6px rgba(0, 0, 0, 0.6);
+	text-shadow: 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 .city-card .current .temp span {

@@ -54,7 +54,7 @@ const colors = {
 	flying: '#F5F5F5',
 	fighting: '#E6E0D4',
 	normal: '#F5F5F5'
-};
+}
 
 const weathers = {
 	Thunderstorm: ["electric","psycic","dragon","water"],
@@ -72,9 +72,11 @@ const weathers = {
 	Tornado:["dragon", "steel"],
 	Clear:["normal","ground","grass","fighting", "fire"],
 	Clouds:["flying"]
-};
+}
 
-
+const dataSamples = {Moscow
+	cities: ['Manila', 'Tokyo', 'Washington', 'Kolkata', 'Beijing', 'Brasilia', 'Bogota', 'Moscow', 'Ankara', '', '', '', '', '', '']
+}
 
 // When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function() {scrollFunction()};
