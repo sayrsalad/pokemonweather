@@ -23,7 +23,7 @@ $(document).ready(function () {
 
 			});
 		});
-	} else if (window.location.pathname == "/openweather/current") {
+	} else if (window.location.pathname == "/pokemonweather/current") {
 		$.get('https://ipinfo.io',function(response){ 
 			getWeather(response.city);
 		},'json');

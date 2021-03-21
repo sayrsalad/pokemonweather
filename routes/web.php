@@ -18,7 +18,8 @@ Route::get('/', function () {
 });
 
 
-Route::get('/openweather/current', 'OpenWeatherController@index')->name('openweather.current');
+Route::get('/pokemonweather/current', 'OpenWeatherController@index')->name('pokemonweather.current');
+Route::get('/pokemonweather/data', 'OpenWeatherController@data')->name('pokemonweather.data');
 Route::get('/openweather/cities', 'OpenWeatherController@cities')->name('openweather.cities');
 
 Route::get('/quizpop/index', 'QuizController@index')->name('quizpop.index');

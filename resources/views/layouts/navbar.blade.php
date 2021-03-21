@@ -15,11 +15,11 @@
 			</li>
 
 			<li class="nav-item">
-				<a class="nav-link" href="#">Pokemon Weather Data</a>
+				<a class="nav-link" href="{{route('pokemonweather.data')}}">Pokemon Weather Data</a>
 			</li>
 
 			<li class="nav-item">
-				<a class="nav-link" href="{{route('openweather.current')}}">Pokemon Weather App</a>
+				<a class="nav-link" href="{{route('pokemonweather.current')}}">Pokemon Weather App</a>
 			</li>
 
 			<li class="nav-item">

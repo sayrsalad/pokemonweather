@@ -14,12 +14,17 @@ class OpenWeatherController extends Controller
      */
     public function index()
     {
-        return View::make('openweather.index');
+        return View::make('pokemonweather.index');
     }
 
     public function cities()
     {
         return View::make('openweather.cities');
+    }
+
+    public function data()
+    {
+        return View::make('pokemonweather.data');
     }
 
     /**
