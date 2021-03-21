@@ -13,9 +13,9 @@
 			<li class="nav-item">
 				<a class="nav-link" href="{{route('pokemon.index')}}">Pokemon</a>
 			</li>
-
+			<!-- {{route('pokemonweather.data')}} -->
 			<li class="nav-item">
-				<a class="nav-link" href="{{route('pokemonweather.data')}}">Pokemon Weather Data</a>
+				<a class="nav-link" href="">Pokemon Weather Data</a>
 			</li>
 
 			<li class="nav-item">

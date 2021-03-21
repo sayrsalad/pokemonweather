@@ -11,6 +11,10 @@
 		</tr>
 	</thead>
 	<tbody id="pokemonweather-tablebody">
+		<tr>
+
+
+		</tr>
 
 	</tbody>
 </table>

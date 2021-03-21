@@ -1,5 +1,5 @@
 // DOM ELEMENTS
-const POKEMON_GRID = document.querySelector('#pokemon-grid');
+// const POKEMON_GRID = document.querySelector('#pokemon-grid');
 const DETAILS = document.querySelector('#details');
 const POKEDEX_REGION = document.querySelector('#current-pokedex');
 
@@ -34,10 +34,10 @@ if (window.location.pathname == "/pokemon") {
 		.then(x => x.json())
 		.then(x => {
 
-		  // Display Pokemon on the page
+			// Display Pokemon on the page
 
-		  pokemonArray.push(x);
-		  insertPokemonCard(x.name, x.id, x.sprites.front_default);
+			pokemonArray.push(x);
+			insertPokemonCard(x.name, x.id, x.sprites.front_default);
 
 
 
@@ -62,37 +62,69 @@ if (window.location.pathname == "/pokemon") {
  * @param {number} pokemonId The Pokemon's Pokedex ID.
  * @param {string} imgUrl The image URL for the Pokemon's default sprite.
  */
- function insertPokemonCard(name, pokemonId, imgUrl) {
+function insertPokemonCard(name, pokemonId, imgUrl) {
+ 	POKEMON_GRID = document.querySelector('#pokemon-grid');
+	// Get parent container
+	const parent = POKEMON_GRID;
 
-  // Get parent container
-  const parent = POKEMON_GRID;
+	// Create div container for Pokemon
+	const pokemon = document.createElement('div');
+	pokemon.className = 'pokemon'
+	pokemon.id = pokemonId;
 
-  // Create div container for Pokemon
-  const pokemon = document.createElement('div');
-  pokemon.className = 'pokemon'
-  pokemon.id = pokemonId;
+	// Create img element
+	const pkImg = document.createElement('img');
+	pkImg.src = imgUrl;
+	
+	// Add Pokemon name underneath image
+	const pokeName = document.createElement('h2');
+	pokeName.textContent = capitalizeFirstLetter(name);
 
-  // Create img element
-  const pkImg = document.createElement('img');
-  pkImg.src = imgUrl;
-  
-  // Add Pokemon name underneath image
-  const pokeName = document.createElement('h2');
-  pokeName.textContent = capitalizeFirstLetter(name);
+	// Put div together
+	pokemon.appendChild(pkImg);
+	pokemon.appendChild(pokeName);
 
-  // Put div together
-  pokemon.appendChild(pkImg);
-  pokemon.appendChild(pokeName);
+	// Attach onclick event
+	pokemon.addEventListener('click', function() {
+	// var elmnt = document.getElementById("pokemon-body");
+	// elmnt.scrollIntoView(true);
+	displayPokemonInfo(this.id);
+	});
 
-  // Attach onclick event
-  pokemon.addEventListener('click', function() {
-  	// var elmnt = document.getElementById("pokemon-body");
-  	// elmnt.scrollIntoView(true);
-  	displayPokemonInfo(this.id);
-  });
+	// Append card to parent div
+	parent.appendChild(pokemon);
+}
 
-  // Append card to parent div
-  parent.appendChild(pokemon);
+function insertPokemonCardTable(name, pokemonId, imgUrl, POKEMON_GRID) {
+	// Get parent container
+	const parent = document.querySelector(POKEMON_GRID);
+
+	// Create div container for Pokemon
+	const pokemon = document.createElement('div');
+	pokemon.className = 'pokemon'
+	pokemon.id = pokemonId;
+
+	// Create img element
+	const pkImg = document.createElement('img');
+	pkImg.src = imgUrl;
+	
+	// Add Pokemon name underneath image
+	const pokeName = document.createElement('h2');
+	pokeName.textContent = capitalizeFirstLetter(name);
+
+	// Put div together
+	pokemon.appendChild(pkImg);
+	pokemon.appendChild(pokeName);
+
+	// Attach onclick event
+	pokemon.addEventListener('click', function() {
+	// var elmnt = document.getElementById("pokemon-body");
+	// elmnt.scrollIntoView(true);
+	displayPokemonInfo(this.id);
+	});
+
+	// Append card to parent div
+	parent.appendChild(pokemon);
 }
 
 /**
@@ -101,32 +133,32 @@ if (window.location.pathname == "/pokemon") {
  */
  function displayPokemonInfo(id) {
 
-  // Get DOM elements
-  const POKEMON_NAME = document.querySelector('#pk-name');
-  const TYPE_LIST = document.querySelector('#type-list');
-  const SPRITE = document.querySelector('#sprite');
-  const STATS = document.querySelector('#stat-list');
-  const EVOLUTION = document.querySelector('#evolution-list');
+	// Get DOM elements
+	const POKEMON_NAME = document.querySelector('#pk-name');
+	const TYPE_LIST = document.querySelector('#type-list');
+	const SPRITE = document.querySelector('#sprite');
+	const STATS = document.querySelector('#stat-list');
+	const EVOLUTION = document.querySelector('#evolution-list');
 
-  // Clear elements before populating with API data
-  POKEMON_NAME.innerHTML = "";
-  TYPE_LIST.innerHTML = "";
-  SPRITE.innerHTML = "";
-  STATS.innerHTML = "";
-  EVOLUTION.innerHTML = "";
+	// Clear elements before populating with API data
+	POKEMON_NAME.innerHTML = "";
+	TYPE_LIST.innerHTML = "";
+	SPRITE.innerHTML = "";
+	STATS.innerHTML = "";
+	EVOLUTION.innerHTML = "";
 
-  // Make API call to get Pokemon info
-  let pokemonUrl = 'https://pokeapi.co/api/v2/pokemon/' + id;
+	// Make API call to get Pokemon info
+	let pokemonUrl = 'https://pokeapi.co/api/v2/pokemon/' + id;
 
-  fetch(pokemonUrl)
-  .then(x => x.json())
-  .then(x => {
+	fetch(pokemonUrl)
+	.then(x => x.json())
+	.then(x => {
 
-	  // Name
-	  POKEMON_NAME.textContent = x.name;
+		// Name
+		POKEMON_NAME.textContent = x.name;
 
-	  // Types
-	  x.types.forEach(function(obj) {
+		// Types
+		x.types.forEach(function(obj) {
 		// Create div
 		let type = document.createElement('div');
 		let typeName = obj.type.name;
@@ -140,14 +172,14 @@ if (window.location.pathname == "/pokemon") {
 		TYPE_LIST.appendChild(type);
 	})
 
-	  // Sprite image
-	  let img = document.createElement('img');
-	  img.src = x.sprites.front_default;
-	  img.alt = x.name;
-	  SPRITE.appendChild(img);
+		// Sprite image
+		let img = document.createElement('img');
+		img.src = x.sprites.front_default;
+		img.alt = x.name;
+		SPRITE.appendChild(img);
 
-	  // Base Stats
-	  x.stats.forEach(function(obj) {
+		// Base Stats
+		x.stats.forEach(function(obj) {
 
 		// Create separate <li> elements for grid positioning (two columns)
 		let statLabel = document.createElement('li');
@@ -159,57 +191,57 @@ if (window.location.pathname == "/pokemon") {
 		STATS.appendChild(statAttr);
 	})
 
-	  // Profile
-	  // Height
-	  document.querySelector('#height .attr-value').textContent = x.height / 10 + ' m';
+		// Profile
+		// Height
+		document.querySelector('#height .attr-value').textContent = x.height / 10 + ' m';
 
-	  // Weight
-	  document.querySelector('#weight .attr-value').textContent = x.weight / 10 + ' kg';
+		// Weight
+		document.querySelector('#weight .attr-value').textContent = x.weight / 10 + ' kg';
 
-	  // Make another API call to get additional info not included in v2/pokemon/{id} endpoint
-	  const speciesUrl = x.species.url;
+		// Make another API call to get additional info not included in v2/pokemon/{id} endpoint
+		const speciesUrl = x.species.url;
 
-	  fetch(speciesUrl)
-	  .then(x => x.json())
-	  .then(x => {
+		fetch(speciesUrl)
+		.then(x => x.json())
+		.then(x => {
 
-		  // Set category
-		  document.querySelector('#category .attr-value').textContent = x.genera[7].genus;
+			// Set category
+			document.querySelector('#category .attr-value').textContent = x.genera[7].genus;
 
-		  // Need to make separate API call to retrieve the evolution chain of a Pokemon
-		  const evolutionUrl = x.evolution_chain.url;
+			// Need to make separate API call to retrieve the evolution chain of a Pokemon
+			const evolutionUrl = x.evolution_chain.url;
 
-		  fetch(evolutionUrl)
-		  .then(x => x.json())
-		  .then(x => {
+			fetch(evolutionUrl)
+			.then(x => x.json())
+			.then(x => {
 
-			  // Accessing the Pokemon Evolution Chain in the Pokemon API
-			  // Credit: https://stackoverflow.com/questions/39112862/pokeapi-angular-how-to-get-pokemons-evolution-chain
-			  // Note: This won't return multiple types of evolution properly (e.g. Eevee -> Jolteon/Vaporeon/Flareon/etc). Currently only works for evolution triggered by leveling up.
+				// Accessing the Pokemon Evolution Chain in the Pokemon API
+				// Credit: https://stackoverflow.com/questions/39112862/pokeapi-angular-how-to-get-pokemons-evolution-chain
+				// Note: This won't return multiple types of evolution properly (e.g. Eevee -> Jolteon/Vaporeon/Flareon/etc). Currently only works for evolution triggered by leveling up.
 
-			  let evoChain = [];
-			  let evoData = x.chain;
+				let evoChain = [];
+				let evoData = x.chain;
 
-			  do {
-			  	let evoDetails = evoData['evolution_details'][0];
-			  	evoChain.push({
-			  		"species_name": evoData.species.name,
-			  		"min_level": !evoDetails ? 1 : evoDetails.min_level,
-			  		"trigger_name": !evoDetails ? null : evoDetails.trigger.name,
-			  		"item": !evoDetails ? null : evoDetails.item
-			  	});
+				do {
+					let evoDetails = evoData['evolution_details'][0];
+					evoChain.push({
+						"species_name": evoData.species.name,
+						"min_level": !evoDetails ? 1 : evoDetails.min_level,
+						"trigger_name": !evoDetails ? null : evoDetails.trigger.name,
+						"item": !evoDetails ? null : evoDetails.item
+					});
 
 				evoData = evoData['evolves_to'][0]; // update evoData variable to access nested "evolves_to" property
 			} while (!!evoData && evoData.hasOwnProperty('evolves_to'));
 
 			console.log(evoChain);
 
-			  // Loop through evoChain array to populate EVOLUTION section.
-			  // Note: Will throw an error and not display if any Pokemon in the evolution chain isn't included in current pokedex (because it wasn't added to global pokemonArray in initial API call).
-			  evoChain.forEach(function(evo) {
+				// Loop through evoChain array to populate EVOLUTION section.
+				// Note: Will throw an error and not display if any Pokemon in the evolution chain isn't included in current pokedex (because it wasn't added to global pokemonArray in initial API call).
+				evoChain.forEach(function(evo) {
 
-			  	const evoDiv = document.createElement('div');
-			  	evoDiv.className = 'pokemon';
+					const evoDiv = document.createElement('div');
+					evoDiv.className = 'pokemon';
 
 				// Get sprites for each evolution stage 
 				const pokemon = pokemonArray.filter(x => x.name === evo.species_name); // Returns undefined if evoChain includes a Pokemon not in pokemonArray
@@ -226,27 +258,27 @@ if (window.location.pathname == "/pokemon") {
 				EVOLUTION.appendChild(evoDiv);
 			})
 			})
-		  .catch(err => {
-			  let errorString = "This Pokemon evolves to/from a Pokemon that isn't included in the current Pokedex." // lol
-			  EVOLUTION.innerHTML = errorString;
-			  console.log(err);
+			.catch(err => {
+				let errorString = "This Pokemon evolves to/from a Pokemon that isn't included in the current Pokedex." // lol
+				EVOLUTION.innerHTML = errorString;
+				console.log(err);
 			})
 		})
-	  .catch(err => {
-	  	console.log(err);
-	  })
+		.catch(err => {
+			console.log(err);
+		})
 
 
-	  // Abilities
-	  let abilitiesStr = [];
-	  x.abilities.forEach(function(obj) {
-	  	abilitiesStr.push(obj.ability.name);
-	  })
-	  document.querySelector('#abilities .attr-value').textContent = abilitiesStr.join(', ');
+		// Abilities
+		let abilitiesStr = [];
+		x.abilities.forEach(function(obj) {
+			abilitiesStr.push(obj.ability.name);
+		})
+		document.querySelector('#abilities .attr-value').textContent = abilitiesStr.join(', ');
 
-	  // Clear page and display info
-	  document.querySelector('.grid-wrapper').style.display = 'none';
-	  DETAILS.style.display = 'grid';
+		// Clear page and display info
+		document.querySelector('.grid-wrapper').style.display = 'none';
+		DETAILS.style.display = 'grid';
 
 	})
 .catch(err => {
@@ -291,7 +323,7 @@ if (window.location.pathname == "/pokemon") {
 // Back button
 const backButton = document.querySelector("#back-button");
 
-if (window.location.pathname == "/openweather/current" || window.location.pathname == "/pokemon") {
+if (window.location.pathname == "/pokemonweather/current" || window.location.pathname == "/pokemon") {
 	backButton.addEventListener('click', function() {
 		document.querySelector("#grid-wrapper").style.display = 'block';
 		DETAILS.style.display = 'none';

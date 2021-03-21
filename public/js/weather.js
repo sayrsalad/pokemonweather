@@ -27,6 +27,8 @@ $(document).ready(function () {
 		$.get('https://ipinfo.io',function(response){ 
 			getWeather(response.city);
 		},'json');
+	} else if (window.location.pathname == "/pokemonweather/data") {
+		getCitySamples(dataSamples);
 	}
 
 	$('#submitCity').on({ 'click': getWeather });
@@ -74,8 +76,31 @@ const weathers = {
 	Clouds:["flying"]
 }
 
-const dataSamples = {Moscow
-	cities: ['Manila', 'Tokyo', 'Washington', 'Kolkata', 'Beijing', 'Brasilia', 'Bogota', 'Moscow', 'Ankara', '', '', '', '', '', '']
+const dataSamples = {
+	//'Manila', 'Tokyo', 'Washington', 'Kolkata', 'Beijing', 'Brasilia', 'Bogota', 'Moscow', 'Ankara', 'Berlin', 'Baghdad', 'Nairobi', 'Taipei', 'Qatar', 'Bairut'
+	cities: ['Manila', 'Tokyo', 'Washington', 'Kolkata', 'Beijing', 'Brasilia', 'Bogota', 'Moscow', 'Ankara', 'Berlin', 'Baghdad', 'Nairobi', 'Taipei', 'Qatar', 'Bairut']
+}
+
+function getCitySamples(data) {
+	let cityData = [];
+
+	$.each(data.cities, function(key, city){
+
+		$.ajax({
+			url: api.baseurl + 'weather?q='+city+'&units=metric'+'&appid=' + api.key,
+			type: 'GET',
+			datatype: 'jsonp',
+			success: function(data){
+				showResultOnTable(data);
+			},
+			error: function (error) {
+				console.log('error');
+			}
+		});
+
+
+	});
+
 }
 
 // When the user scrolls down 20px from the top of the document, show the button
@@ -134,6 +159,7 @@ const getWeatherPokemon = async (weather) => {
 
 	// Fetch all Pokemon from Pokedex and display on page
 	x.pokemon_entries.forEach(function(obj) {
+		
 		let pokemonURL = "";
 		pokemonURL = 'https://pokeapi.co/api/v2/pokemon/' + obj.entry_number;
 
@@ -143,10 +169,10 @@ const getWeatherPokemon = async (weather) => {
 
 		  // Display Pokemon on the page
 		  for (type in x.types) {
-			if (weathers[weather].includes(x.types[type].type.name)) {
-				pokemonArray.push(x);
-				insertPokemonCard(x.name, x.id, x.sprites.front_default);
-			}
+		  	if (weathers[weather].includes(x.types[type].type.name)) {
+		  		pokemonArray.push(x);
+		  		insertPokemonCard(x.name, x.id, x.sprites.front_default);
+		  	}
 		  }
 
 
@@ -155,22 +181,14 @@ const getWeatherPokemon = async (weather) => {
 		.catch(err => {
 			console.log(err);
 		})
+		
+
 	})
 })
 	.catch(err => {
 		console.log(err || "this is an error");
 	});
 };
-
-const getPokemonData = async id => {
-	const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
-
-	const res = await fetch(url);
-	const pokemon = await res.json();
-
-	return pokemon;
-};
-
 
 function showResults (data) {
 
@@ -233,6 +251,105 @@ function showResults (data) {
 	} else {
 		weatherbody.style.backgroundImage = "url(../images/weather/cold.jpg)"
 	}
+
+}
+
+function showResultOnTable(city) {
+	var tr = $("<tr>");
+	tr.append($("<td>").html(city.name));
+	tr.append($("<td>").html(city.weather[0].main));
+	tr.append($("<td>").html(`		
+		<div class="pokemon-body app-pokemonweather" id="pokemon-body">
+
+		<div class="grid-wrapper" id="grid-wrapper">
+		<div class="pokemon-grid" id="${city.name}-pokemon-grid"></div>
+		</div>
+		<div class="details" id="details">
+		<div class="back-button" id="back-button"></div>
+		<h1 class="pk-name" id="pk-name"></h1>
+		<div class="type-wrapper" id="type-wrapper">
+		<h2>Type</h2>
+		<ul class="type-list" id="type-list"></ul>
+		</div>
+		<div class="sprite" id="sprite"></div>
+		<div class="base-stats" id="base-stats">
+		<h2>Base Stats</h2>
+		<ul class="stat-list" id="stat-list"></ul>
+		</div>
+		<div class="profile" id="profile">
+		<h2>Profile</h2>
+		<ul class="profile-list" id="profile-list">
+		<li class="height" id="height">
+		<div class="attr-label">Height</div>
+		<div class="attr-value"></div>
+		</li>
+		<li class="weight" id="weight">
+		<div class="attr-label">Weight</div>
+		<div class="attr-value"></div>
+		</li>
+		<li class="abilities" id="abilities">
+		<div class="attr-label">Abilities</div>
+		<div class="attr-value"></div>
+		</li>
+		<li class="category" id="category">
+		<div class="attr-label">Category</div>
+		<div class="attr-value"></div>
+		</li>
+		</ul>
+		</div>
+		<div class="evolution" id="evolution">
+		<h2>Evolution Chain</h2>
+		<div class="evolution-list" id="evolution-list"></div>
+		</div>
+		</div>
+
+		</div>
+		`));
+
+	$("#pokemonweather-table").append(tr);
+	var NoOfPokemon = 0;
+	fetch(pokedexUrl)
+	.then(x => x.json())
+	.then(x => {
+	// Get name of Pokedex to display in header
+	// POKEDEX_REGION.textContent = capitalizeFirstLetter(x.name);
+
+	// Fetch all Pokemon from Pokedex and display on page
+	x.pokemon_entries.forEach(function(obj) {
+		let pokemonURL = "";
+		pokemonURL = 'https://pokeapi.co/api/v2/pokemon/' + obj.entry_number;
+		fetch(pokemonURL)
+		.then(x => x.json())
+		.then(x => {
+
+		  // Display Pokemon on the page
+		  for (type in x.types) {
+		  	if (weathers[city.weather[0].main].includes(x.types[type].type.name)) {
+		  		if (NoOfPokemon < 10) {
+		  			pokemonArray.push(x);
+		  			insertPokemonCardTable(x.name, x.id, x.sprites.front_default, '#'+city.name+'-pokemon-grid');
+		  			NoOfPokemon += 1;		  			
+		  		}
+
+		  	}
+		  }
+
+
+
+		})
+		.catch(err => {
+			console.log(err);
+		})
+	})
+})
+	.catch(err => {
+		console.log(err || "this is an error");
+	});
+
+
+}
+
+function getWeatherPokemonTable() {
 
 }
 
