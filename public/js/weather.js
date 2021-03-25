@@ -62,8 +62,8 @@ const weathers = {
 	Thunderstorm: ["electric","psycic","dragon","water"],
 	Drizzle: ["water","psychic","normal","electric","grass"],
 	Rain:["water","electic","grass"],
-	Snow:["water","ice","normal"],
-	Mist:["water","shadow","poison","dark","ghost"],
+	Snow:["water","ice"],
+	Mist:["water","shadow","poison","ghost"],
 	Smoke:["fire","normal","dragon","bug"],
 	Haze:["fire","shadow","ghost","dark"],
 	Dust:["ground","ghost", "fire"],
@@ -72,7 +72,7 @@ const weathers = {
 	Ash:["ghost", "rock"],
 	Squall:["flying"],
 	Tornado:["dragon", "steel"],
-	Clear:["normal","ground","grass","fighting", "fire"],
+	Clear:["normal","ground","grass","fighting"],
 	Clouds:["flying"]
 }
 
@@ -204,10 +204,19 @@ function showResults (data) {
 	temp.innerHTML = `${Math.round(data.main.temp* 10)/ 10}<span>°C</span>`;
 
 	let weather_el = document.querySelector('.current .weather');
-	weather_el.innerText = `${data.weather[0].main}`;
+	weather_el.innerHTML = `${data.weather[0].main}`;
+
+	let weather_icon = document.querySelector('.current .weather-icon');
+	weather_icon.innerHTML = `<img class="weather-icon" src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="${data.weather[0].icon}">`;
 
 	let hilow = document.querySelector('.hi-low');
 	hilow.innerText = `${Math.round(data.main.temp_min* 10)/ 10}°C / ${Math.round(data.main.temp_max* 10)/ 10}°C`;
+
+	let pressure = document.querySelector('.pressure');
+	pressure.innerText = `Atmosphere: ${data.main.pressure}hPa`;
+
+	let humidity = document.querySelector('.humidity');
+	humidity.innerText = `Humidity: ${data.main.humidity}%`;
 
 	document.getElementById("pokemon-grid").innerHTML = "";
 
@@ -378,8 +387,11 @@ function createWeatherCard(city) {
 	</section>
 	<div class="current">
 	<div class="temp">${Math.round(city.main.temp* 10)/ 10}<span>°C</span></div>
-	<div class="weather">${city.weather[0].main}</div>
+	<div class="weather">${city.weather[0].main}<img src="http://openweathermap.org/img/wn/${city.weather[0].icon}@2x.png" alt="${city.weather[0].icon}"></img></div>
 	<div class="hi-low">${Math.round(city.main.temp_min* 10)/ 10}°C / ${Math.round(city.main.temp_max* 10)/ 10}°C</div>
+	<div class="hi-low">Atmosphere: ${city.main.pressure}hPa</div>
+	<div class="hi-low">Humidity: ${city.main.humidity}%</div>
+	<div class="hi-low">Wind: ${city.wind.speed}m/s</div>
 	</div>
 	`;
 
