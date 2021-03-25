@@ -15,7 +15,10 @@
 			<div class="current">
 				<div class="temp"></span></div>
 				<div class="weather"></div>
+				<div class="weather-icon"></div>
 				<div class="hi-low"></div>
+				<div class="pressure"></div>
+				<div class="humidity"></div>
 			</div>
 		</main>
 
