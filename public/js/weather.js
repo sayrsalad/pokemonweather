@@ -103,7 +103,6 @@ function getCitySamples(data) {
 
 }
 
-// When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
@@ -115,12 +114,11 @@ function scrollFunction() {
 	}
 }
 
-// When the user clicks on the button, scroll to the top of the document
+
 function topFunction() {
 	document.body.scrollTop = 0;
 	document.documentElement.scrollTop = 0;
 }
-
 
 
 function getWeather(maincity){
@@ -154,10 +152,7 @@ const getWeatherPokemon = async (weather) => {
 	fetch(pokedexUrl)
 	.then(x => x.json())
 	.then(x => {
-	// Get name of Pokedex to display in header
-	// POKEDEX_REGION.textContent = capitalizeFirstLetter(x.name);
 
-	// Fetch all Pokemon from Pokedex and display on page
 	x.pokemon_entries.forEach(function(obj) {
 		
 		let pokemonURL = "";
@@ -167,7 +162,6 @@ const getWeatherPokemon = async (weather) => {
 		.then(x => x.json())
 		.then(x => {
 
-		  // Display Pokemon on the page
 		  for (type in x.types) {
 		  	if (weathers[weather].includes(x.types[type].type.name)) {
 		  		pokemonArray.push(x);
@@ -221,38 +215,6 @@ function showResults (data) {
 	document.getElementById("pokemon-grid").innerHTML = "";
 
 	getWeatherPokemon(data.weather[0].main);
-
-	// if (data.weather[0].main == 'Thunderstorm') {
-	// 	getWeatherPokemon(data.weather[0].main);
-	// } else if (data.weather[0].main == 'Drizzle') {
-	// 	getWeatherPokemon(data.weather[0].main);
-	// } else if (data.weather[0].main == 'Rain') {
-	// 	getWeatherPokemon(data.weather[0].main);
-	// } else if (data.weather[0].main == 'Snow') {
-	// 	getWeatherPokemon(data.weather[0].main);
-	// } else if (data.weather[0].main == 'Mist') {
-	// 	getWeatherPokemon(data.weather[0].main);
-	// } else if (data.weather[0].main == 'Smoke') {
-	// 	getWeatherPokemon(data.weather[0].main);
-	// } else if (data.weather[0].main == 'Haze') {
-	// 	getWeatherPokemon(data.weather[0].main);
-	// } else if (data.weather[0].main == 'Dust') {
-	// 	getWeatherPokemon(data.weather[0].main);
-	// } else if (data.weather[0].main == 'Fog') {
-	// 	getWeatherPokemon(data.weather[0].main);
-	// } else if (data.weather[0].main == 'Sand') {
-	// 	getWeatherPokemon(data.weather[0].main);
-	// } else if (data.weather[0].main == 'Ash') {
-	// 	getWeatherPokemon(data.weather[0].main);
-	// } else if (data.weather[0].main == 'Squall') {
-	// 	getWeatherPokemon(data.weather[0].main);
-	// } else if (data.weather[0].main == 'Tornado') {
-	// 	getWeatherPokemon(data.weather[0].main);
-	// } else if (data.weather[0].main == 'Clear') {
-	// 	getWeatherPokemon(data.weather[0].main);
-	// } else if (data.weather[0].main == 'Clouds') {
-	// 	getWeatherPokemon(data.weather[0].main);
-	// }
 
 	var weatherbody = document.getElementById("weather-body");
 	if (data.main.temp > 16) {
